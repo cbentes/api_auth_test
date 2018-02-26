@@ -48,20 +48,39 @@ Edit user "test" and add first and last name: "Peter Pan"
 
 ## Test API
 
-Simple end point
+
+#### Simple end point
 
 ```
 curl -X GET http://127.0.0.1:8000/api/ -w "\n"
 ```
 
-Auth endpoint with invalid API key
+output:
+
+```
+{"api": "Test V1", "timestamp": 1519673841}
+```
+
+#### Auth endpoint with invalid API key
 
 ```
 curl -u test:not_valid -X GET http://127.0.0.1:8000/api/hello -w "\n"
 ```
 
-Auth endpoint with correct API key
+output:
+
+```
+{"error": "Invalid authorization token provided"}
+```
+
+#### Auth endpoint with correct API key
 
 ```
 curl -u test:abcdefgh123456789 -X GET http://127.0.0.1:8000/api/hello -w "\n"
+```
+
+output:
+
+```
+{"msg": "Hello Peter Pan"}
 ```
